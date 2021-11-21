@@ -39,6 +39,7 @@ function Playing({ gameState, elapsedTime }) {
       }, true);
     };
     setCorrect(checkCorrectness());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enteredWord]);
 
   return (
