@@ -1,0 +1,17 @@
+button {
+  color: var(--color-neutral-100);
+  background-color: var(--color-primary-800);
+  margin: auto;
+  font-family: var(--font-button);
+  font-size: 5rem;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 0.235rem;
+  padding: 2.5rem 6rem;
+  border-radius: 20px;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
