@@ -2,12 +2,49 @@ import DisplayWord from "./DisplayWord";
 import EnterWord from "./EnterWord";
 import TimeElapsed from "./TimeElapsed";
 import ActionButton from "../reusable/ActionButton";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import _ from "lodash";
+function Playing({ gameState }) {
+  const [words, setWords] = useState([]);
+  const [currWord, setCurrWord] = useState("");
+  const [enteredWord, setEnteredWord] = useState("");
+  const [correct, setCorrect] = useState(true);
+  useEffect(() => {
+    const fetchWords = async () => {
+      return fetch(
+        "https://random-word-api.herokuapp.com/word?number=500"
+      ).then((r) => r.json());
+    };
+    fetchWords().then((newWords) => {
+      setWords((words) => newWords);
+    });
+  }, [gameState]);
+  useEffect(() => {
+    const getRandomWord = () => {
+      setCurrWord(_.sample(words));
+    };
+    getRandomWord();
+    setEnteredWord("");
+  }, [correct, words]);
 
-function Playing() {
+  const handleEnterWord = (e) => {
+    setEnteredWord(e.target.value);
+  };
+
+  useEffect(() => {
+    const checkCorrectness = () => {
+      return [...enteredWord].reduce((prev, curr, index) => {
+        return curr === currWord[index] && prev;
+      }, true);
+    };
+    setCorrect(checkCorrectness());
+  }, [enteredWord]);
+
   return (
     <div>
-      <DisplayWord word="sample" />
-      <EnterWord />
+      <DisplayWord word={currWord} />
+      <EnterWord handleEnterWord={handleEnterWord} word={enteredWord} />
       <TimeElapsed />
       <ActionButton action="end" />
     </div>
@@ -15,3 +52,7 @@ function Playing() {
 }
 
 export default Playing;
+
+Playing.propTypes = {
+  gameState: PropTypes.exact("playing"),
+};

@@ -1,5 +1,5 @@
-function EnterWord({ word }) {
-  return <div>{word}</div>;
+function EnterWord({ word, handleEnterWord }) {
+  return <input value={word} onChange={handleEnterWord} />;
 }
 
 export default EnterWord;
