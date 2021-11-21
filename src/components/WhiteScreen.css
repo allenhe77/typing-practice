@@ -2,6 +2,7 @@
   margin: auto;
   width: 100%;
   max-width: 62.5rem;
+  min-width: 27.1875rem;
   background-color: white;
   display: flex;
   flex-direction: column;
