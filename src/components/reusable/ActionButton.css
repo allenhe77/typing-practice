@@ -1,0 +1,16 @@
+.action-button {
+  font-family: var(--font-button);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 37px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  background-color: var(--color-primary-600);
+  color: #ffffff;
+  padding: 1rem 2.3rem;
+}
+
+.action-button:hover {
+  cursor: pointer;
+}

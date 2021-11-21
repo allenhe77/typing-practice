@@ -1,6 +1,14 @@
 import PropTypes from "prop-types";
+import "./ActionButton.css";
 function ActionButton({ action }) {
-  return <div>{action}</div>;
+  switch (action) {
+    case "end":
+      return <button className="action-button">End Session</button>;
+
+    case "retry":
+      return <button className="action-button">Retry</button>;
+    default:
+  }
 }
 
 export default ActionButton;

@@ -5,7 +5,7 @@ import ActionButton from "../reusable/ActionButton";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-function Playing({ gameState }) {
+function Playing({ gameState, elapsedTime }) {
   const [words, setWords] = useState([]);
   const [currWord, setCurrWord] = useState("");
   const [enteredWord, setEnteredWord] = useState("");
@@ -42,10 +42,10 @@ function Playing({ gameState }) {
   }, [enteredWord]);
 
   return (
-    <div>
+    <div className="white-screen">
+      <TimeElapsed elapsedTime={elapsedTime} />
       <DisplayWord word={currWord} />
       <EnterWord handleEnterWord={handleEnterWord} word={enteredWord} />
-      <TimeElapsed />
       <ActionButton action="end" />
     </div>
   );

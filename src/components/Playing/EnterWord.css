@@ -1,0 +1,21 @@
+input {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 45.625rem;
+  border: 3px solid var(--color-neutral-600);
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 4.5rem 0;
+  text-align: center;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3rem;
+  line-height: 45px;
+
+  letter-spacing: 0.03em;
+
+  /* neutral-600 */
+
+  color: var(--color-neutral-600);
+}

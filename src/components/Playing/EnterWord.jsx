@@ -1,3 +1,4 @@
+import "./EnterWord.css";
 function EnterWord({ word, handleEnterWord }) {
   return <input value={word} onChange={handleEnterWord} />;
 }

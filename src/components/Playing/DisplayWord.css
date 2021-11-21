@@ -1,0 +1,16 @@
+.display-word {
+  border: 1px solid #829399;
+  border-radius: 3px;
+  padding: 1.5rem 0;
+  max-width: 30.94rem;
+  width: 100%;
+  text-align: center;
+
+  font-family: Poppins, monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 45px;
+  letter-spacing: 0.03em;
+  color: var(--color-neutral-300);
+}
