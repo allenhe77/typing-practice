@@ -3,7 +3,7 @@ import StatsInfo from "./StatsInfo";
 import ActionButton from "../reusable/ActionButton";
 import PropTypes, { number, string } from "prop-types";
 
-function SessionStats({ action, elapsedTime, wordsCorrect }) {
+function SessionStats({ elapsedTime, wordsCorrect, retryGame }) {
   const getWordsPerMin = (num, time) => {
     return (num * (time / 60)).toFixed(1);
   };
@@ -11,9 +11,11 @@ function SessionStats({ action, elapsedTime, wordsCorrect }) {
     <div className="white-screen">
       <StatsTitle title="Elapsed Time" />
       <StatsInfo info={elapsedTime} />
+      <StatsTitle title="Correct Typed Words" />
+      <StatsInfo info={wordsCorrect} />
       <StatsTitle title="Words Per Minute" />
       <StatsInfo info={getWordsPerMin(wordsCorrect, elapsedTime)} />
-      <ActionButton action="retry" />
+      <ActionButton action="retry" retryGame={retryGame} />
     </div>
   );
 }
@@ -21,7 +23,7 @@ function SessionStats({ action, elapsedTime, wordsCorrect }) {
 export default SessionStats;
 
 SessionStats.propTypes = {
-  action: string,
   elapsedTime: number,
   wordsCorrect: PropTypes.oneOfType([string, number]),
+  retryGame: PropTypes.func,
 };

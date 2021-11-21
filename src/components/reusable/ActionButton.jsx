@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import "./ActionButton.css";
-function ActionButton({ action, endGame }) {
+function ActionButton({ action, endGame, retryGame }) {
   switch (action) {
     case "end":
       return (
@@ -10,7 +10,11 @@ function ActionButton({ action, endGame }) {
       );
 
     case "retry":
-      return <button className="action-button">Retry</button>;
+      return (
+        <button className="action-button" onClick={retryGame}>
+          Retry
+        </button>
+      );
     default:
   }
 }
@@ -20,4 +24,5 @@ export default ActionButton;
 ActionButton.propTypes = {
   action: PropTypes.oneOf(["end", "retry"]),
   endGame: PropTypes.func,
+  retryGame: PropTypes.func,
 };

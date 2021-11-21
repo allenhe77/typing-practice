@@ -8,12 +8,20 @@ function Game() {
     setGameState("end");
   };
 
+  const retryGame = () => {
+    setGameState("playing");
+  };
+
   return (
     <div className="container">
       {gameState === "start" ? (
         <StartGame onClick={() => setGameState((state) => "playing")} />
       ) : (
-        <WhiteScreen gameState={gameState} endGame={endGame} />
+        <WhiteScreen
+          gameState={gameState}
+          endGame={endGame}
+          retryGame={retryGame}
+        />
       )}
     </div>
   );

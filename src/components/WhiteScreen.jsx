@@ -4,12 +4,15 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import "./WhiteScreen.css";
 
-function WhiteScreen({ gameState, endGame }) {
+function WhiteScreen({ gameState, endGame, retryGame }) {
   const [time, setTime] = useState(0);
   const [numCorrect, setNumCorrect] = useState(0);
   useEffect(() => {
-    console.log(numCorrect);
-  }, [numCorrect]);
+    if (gameState !== "end") {
+      setNumCorrect(0);
+      setTime(0);
+    }
+  }, [gameState]);
   const increaseNumCorrect = () => {
     setNumCorrect((numCorrect) => numCorrect + 1);
   };
@@ -26,7 +29,12 @@ function WhiteScreen({ gameState, endGame }) {
     );
   } else if (gameState === "end") {
     return (
-      <SessionStats action="end" elapsedTime={time} wordsCorrect={numCorrect} />
+      <SessionStats
+        action="end"
+        elapsedTime={time}
+        wordsCorrect={numCorrect}
+        retryGame={retryGame}
+      />
     );
   }
 }
@@ -35,4 +43,5 @@ export default WhiteScreen;
 
 WhiteScreen.propTypes = {
   gameState: PropTypes.oneOf(["playing", "end"]),
+  retryGame: PropTypes.func,
 };
