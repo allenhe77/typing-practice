@@ -27,7 +27,7 @@ function Playing({ gameState, elapsedTime, setNumCorrect, endGame, setTime }) {
       setTime((time) => time + 1);
     }, 1000);
     return () => clearInterval(elapseTimer);
-  }, [gameState]);
+  }, [setTime, gameState]);
 
   useEffect(() => {
     const getRandomWord = () => {

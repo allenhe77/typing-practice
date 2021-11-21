@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import StartGame from "./StartGame";
 import WhiteScreen from "./WhiteScreen";
 import "./Game.css";
