@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import "./StatsTitle.css";
 function StatsTitle({ title }) {
-  return <div>{title}</div>;
+  return <div className="stats-title">{title}</div>;
 }
 
 export default StatsTitle;

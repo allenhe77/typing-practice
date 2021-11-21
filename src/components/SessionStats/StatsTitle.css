@@ -1,0 +1,10 @@
+.stats-title {
+  color: var(--color-primary-800);
+  font-family: Poppins, monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.875rem;
+  line-height: 45px;
+
+  letter-spacing: 0.03em;
+}

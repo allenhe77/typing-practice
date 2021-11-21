@@ -3,13 +3,14 @@ import EnterWord from "./EnterWord";
 import TimeElapsed from "./TimeElapsed";
 import ActionButton from "../reusable/ActionButton";
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import _ from "lodash";
-function Playing({ gameState, elapsedTime }) {
+function Playing({ gameState, elapsedTime, setNumCorrect, endGame, setTime }) {
   const [words, setWords] = useState([]);
   const [currWord, setCurrWord] = useState("");
   const [enteredWord, setEnteredWord] = useState("");
   const [correct, setCorrect] = useState(true);
+
   useEffect(() => {
     const fetchWords = async () => {
       return fetch(
@@ -20,6 +21,14 @@ function Playing({ gameState, elapsedTime }) {
       setWords((words) => newWords);
     });
   }, [gameState]);
+
+  useEffect(() => {
+    const elapseTimer = setInterval(() => {
+      setTime((time) => time + 1);
+    }, 1000);
+    return () => clearInterval(elapseTimer);
+  }, [gameState]);
+
   useEffect(() => {
     const getRandomWord = () => {
       setCurrWord(_.sample(words));
@@ -38,7 +47,13 @@ function Playing({ gameState, elapsedTime }) {
         return curr === currWord[index] && prev;
       }, true);
     };
-    setCorrect(checkCorrectness());
+
+    if (enteredWord === currWord && enteredWord.length > 0) {
+      setNumCorrect();
+      setCorrect(false);
+    } else {
+      setCorrect(checkCorrectness());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enteredWord]);
 
@@ -47,7 +62,7 @@ function Playing({ gameState, elapsedTime }) {
       <TimeElapsed elapsedTime={elapsedTime} />
       <DisplayWord word={currWord} />
       <EnterWord handleEnterWord={handleEnterWord} word={enteredWord} />
-      <ActionButton action="end" />
+      <ActionButton action="end" endGame={endGame} />
     </div>
   );
 }
@@ -55,5 +70,8 @@ function Playing({ gameState, elapsedTime }) {
 export default Playing;
 
 Playing.propTypes = {
-  gameState: PropTypes.exact("playing"),
+  gameState: PropTypes.string,
+  setNumCorrect: PropTypes.func,
+  endGame: func,
+  setTime: func,
 };

@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
-
+import PropTypes, { oneOfType } from "prop-types";
+import "./StatsInfo.css";
 function StatsInfo({ info }) {
-  return <div>{info}</div>;
+  return <div className="stats-info">{info}</div>;
 }
 
 export default StatsInfo;
 
 StatsInfo.propTypes = {
-  info: PropTypes.string,
+  info: oneOfType([PropTypes.number, PropTypes.string]),
 };
